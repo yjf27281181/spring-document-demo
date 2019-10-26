@@ -1,0 +1,47 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <beans>
+        <bean id="beanOne" class="edu.csu.example.demo.test.ThingOne">
+            <constructor-arg ref="beanTwo"/>
+            <constructor-arg ref="beanThree"/>
+        </bean>
+
+        <bean id="beanTwo" class="edu.csu.example.demo.test.ThingTwo"/>
+
+        <bean id="beanThree" class="edu.csu.example.demo.test.ThingThree"/>
+
+        <bean id="exampleBean" class="edu.csu.example.demo.test.ExampleBean">
+            <constructor-arg type="int" value="7500000"/>
+            <constructor-arg type="java.lang.String" value="42"/>
+        </bean>
+
+        <bean id="exampleBean2" class="edu.csu.example.demo.test.ExampleBean2">
+            <!-- setter injection using the nested ref element -->
+            <property name="beanOne">
+                <ref bean="anotherExampleBean"/>
+            </property>
+
+            <!-- setter injection using the neater ref attribute -->
+            <property name="beanTwo" ref="yetAnotherBean"/>
+            <property name="integerProperty" value="1"/>
+        </bean>
+
+        <bean id="anotherExampleBean" class="edu.csu.example.demo.test.AnotherBean"/>
+        <bean id="yetAnotherBean" class="edu.csu.example.demo.test.YetAnotherBean"/>
+        <!--<bean id="mytest" class="edu.csu.example.demo.test.MyTest">-->
+            <!--<property name="str" value="this is a string"/>-->
+            <!--<property name="num" value="111"/>-->
+            <!--<property name="bool" value="true"/>-->
+        <!--</bean>-->
+        <bean id="mytest" class="edu.csu.example.demo.test.MyTest"
+              p:str="this is a string2"
+              p:num="112"
+              p:bool="false"/>
+    </beans>
+
+</beans>
