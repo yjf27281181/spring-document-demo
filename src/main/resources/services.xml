@@ -12,6 +12,22 @@
         <!-- additional collaborators and configuration for this bean go here -->
     </bean>
 
+    <bean id="clientService"
+          class="edu.csu.example.demo.service.ClientService"
+          factory-method="createInstance"/>
+
+    <bean id="serviceLocator" class="edu.csu.example.demo.service.DefaultServiceLocator">
+        <!-- inject any dependencies required by this locator bean -->
+    </bean>
+
+    <bean id="clientService2"
+          factory-bean="serviceLocator"
+          factory-method="createClientServiceInstance"/>
+
+    <bean id="accountService"
+          factory-bean="serviceLocator"
+          factory-method="createAccountServiceInstance"/>
+
     <!-- more bean definitions for services go here -->
 
 </beans>
